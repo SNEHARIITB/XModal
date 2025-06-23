@@ -87,8 +87,8 @@ const ModalC = () => {
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
-        className="modal"
-        overlayClassName="modal-overlay"
+        className="modalCC"
+        overlayClassName="modal"
       >
         <form className="modal-content" ref={modalRef} onSubmit={handleSubmit}>
           <h2>Fill the Form</h2>
