@@ -81,14 +81,14 @@ const ModalC = () => {
   return (
     <div className="main">
       <h1>User Details Modal</h1>
-      {!isModalOpen && (
+      {/* {!isModalOpen && ( */}
         <button className="btn" onClick={() => setIsModalOpen(true)}>Open Form</button>
-      )}
+      {/*  )} */}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         className="modal"
-        overlayClassName="modal-overlay"
+        // overlayClassName="modal-overlay"
       >
         <form className="modal-content" ref={modalRef} onSubmit={handleSubmit}>
           <h2>Fill the Form</h2>

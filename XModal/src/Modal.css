@@ -54,8 +54,8 @@
 .modal-content input{
   font-size: 30px;
 }
-.modal-overlay {
+/* .modal-overlay {
   position: fixed;
   inset: 0;
   pointer-events: none;
-}
+} */
