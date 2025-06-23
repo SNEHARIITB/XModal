@@ -29,7 +29,7 @@ const ModalC = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { username, email, phone, dob } = formData;
+    const { email, phone, dob } = formData;
 
     // if (!username) {
     //   alert("Please fill out the username field.");
