@@ -1,11 +1,11 @@
-import Modal from "./Modal"
+import ModalC from "./Modal"
 
 function App() {
 
 
   return (
     <>
-      <Modal/>
+      <ModalC/>
     </>
   )
 }

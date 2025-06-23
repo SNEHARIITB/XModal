@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-
-const Modal = () => {
+import Modal from "react-modal";
+import "./Modal.css";
+const ModalC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -11,7 +12,7 @@ const Modal = () => {
 
   const modalRef = useRef(null);
 
-  // Close modal when clicking outside of modal-content
+  
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (isModalOpen && modalRef.current && !modalRef.current.contains(event.target)) {
@@ -26,28 +27,29 @@ const Modal = () => {
     setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const { username, email, phone, dob } = formData;
 
-    if (!username) {
-      alert("Please fill out the username field.");
-      return;
-    }
+    // if (!username) {
+    //   alert("Please fill out the username field.");
+    //   return;
+    // }
 
-    if (!email) {
-      alert("Please fill out the email field.");
-      return;
-    }
+    // if (!email) {
+    //   alert("Please fill out the email field.");
+    //   return;
+    // }
 
     if (!email.includes("@")) {
       alert("Invalid email. Please check your email address.");
       return;
     }
 
-    if (!phone) {
-      alert("Please fill out the phone field.");
-      return;
-    }
+    // if (!phone) {
+    //   alert("Please fill out the phone field.");
+    //   return;
+    // }
 
     if (!/^\d{10}$/.test(phone)) {
       alert("Invalid phone number. Please enter a 10-digit phone number.");
@@ -66,7 +68,7 @@ const Modal = () => {
       return;
     }
 
-    // All validations passed
+    
     setIsModalOpen(false);
     setFormData({
       username: "",
@@ -77,37 +79,46 @@ const Modal = () => {
   };
 
   return (
-    <div className="modal">
+    <div className="main">
+      <h1>User Details Modal</h1>
       {!isModalOpen && (
-        <button onClick={() => setIsModalOpen(true)}>Open Form</button>
+        <button className="btn" onClick={() => setIsModalOpen(true)}>Open Form</button>
       )}
-
-      {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content" ref={modalRef}>
-            <h2>Fill the Form</h2>
-            <div>
-              <label htmlFor="username">Username: </label>
-              <input id="username" type="text" value={formData.username} onChange={handleInputChange} />
-            </div>
-            <div>
-              <label htmlFor="email">Email: </label>
-              <input id="email" type="email" value={formData.email} onChange={handleInputChange} />
-            </div>
-            <div>
-              <label htmlFor="phone">Phone: </label>
-              <input id="phone" type="text" value={formData.phone} onChange={handleInputChange} />
-            </div>
-            <div>
-              <label htmlFor="dob">Date of Birth: </label>
-              <input id="dob" type="date" value={formData.dob} onChange={handleInputChange} />
-            </div>
-            <button className="submit-button" onClick={handleSubmit}>Submit</button>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        className="modal"
+      >
+        <form className="modal-content" ref={modalRef} onSubmit={handleSubmit}>
+          <h2>Fill the Form</h2>
+          <div>
+            <label htmlFor="username">Username: </label>
+            <br />
+            <input id="username" type="text" value={formData.username} required onChange={handleInputChange} />
           </div>
-        </div>
-      )}
+          <div>
+            <label htmlFor="email">Email: </label>
+            <br />
+            <input id="email" type="email" value={formData.email} required onChange={handleInputChange} />
+          </div>
+          <div>
+            <label htmlFor="phone">Phone: </label>
+            <br />
+            <input id="phone" type="text" value={formData.phone} required onChange={handleInputChange} />
+          </div>
+          <div>
+            <label htmlFor="dob">Date of Birth: </label>
+            <br />
+            <input id="dob" type="date" value={formData.dob} required onChange={handleInputChange} />
+          </div>
+          <br />
+          <button className="submit-button btn" type="submit">Submit</button>
+        </form>
+
+      </Modal>
+
     </div>
   );
 };
 
-export default Modal;
+export default ModalC;
